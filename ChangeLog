@@ -1,0 +1,512 @@
+$Id: ChangeLog,v 1.75 2006/08/11 13:54:47 peter Exp $
+
+ChangeLog of pflogstats and modules
+	PB: Dr. Peter Bieringer
+	BZ: Bjoern A. Zeeb
+
+2018-09-01
+	- minor perl fixes
+
+2006-08-11
+	- pflogstats-common-support (0.25)
+	  [ajd] require Number::Format >= 1.51, older versions have problems like
+	     'Argument "precision" isn't numeric in exponentiation (**) at'
+	  [enh] add support for option "fixednumberprecision" (default: 3)
+	  [enh] add support for 2 additional number formats: {de_DE,en_US}-nosep (suppressing thousand separator)
+
+2006-08-01
+	- pflogstats-statistics-accounting.pm (0.42)
+	- pflogstats-statistics-reject.pm (0.18)
+	- pflogstats-statistics-uce.pm (0.12)
+	  [ADJ]: regex now supports qid with 12 hexdigits
+
+2006-06-22
+	- pflogstats-common-support (0.24)
+	  [enh] assume unixtime=0 if timmin/max is not defined (happen on empty input)
+	  [enh] improve handling of format_bytes to handle large numbers 
+
+2006-02-09
+	- pflogstats-statistics-accpopimap.pm (0.13)
+	  [FIX]: add fallback/compatibility code for counting header and body values if present and sent=0 or missing
+	- apachelogiostats.pl (0.10)
+	  [FIX]: implement numerical IP detection
+
+2005-12-12
+	- apachelogiostats.pl (0.09)
+	  [EXTENSION]: add option 'quiet'
+	- pflogstats-extensions-networking.pm (0.13)
+	  [EXTENSION]: add support for "quiet" output to "beforemainloopstarts"
+	- pflogstats-statistics-accounting.pm (0.40)
+	  [FIX]: fix non working printing of domain statistics in computer format
+
+2005-10-19
+	- pfloganonymizer (0.1.0)
+	  [FEATURE]: major review
+	- pflogstats-extensions-networking.pm (0.13)
+	  [EXTENSION]: add switch for output to "beforemainloopstarts" (will be required by pfloganonymizer)
+	- pflogstats-statistics-accounting.pm (0.39)
+	  [EXTENSION]: use print_stat for normal statistics to take care of sort option
+
+2005-10-04/PB
+	- pflogstats-statistics-accounting.pm (0.38)
+	  [FIX]: add support for amavis "blocked clean" because of reaching size limit
+
+2005-09-26/PB
+	- pflogstats-statistics-accounting.pm (0.37)
+	  [FIX]: remove not really needed usage of Net::IP
+
+2005-09-01/PB
+	- pflogstats-statistics-accounting.pm (0.36)
+	  [FIX]: fix problem with pattern matches and == in if
+
+2005-07-01/PB
+	- apachelogiostats.pl (0.08)
+	  [FIX]: use new hook 'early_checkoptions'
+	- sqwmstats.pl (0.08)
+	  [FIX]: use new hook 'early_checkoptions'
+	- pflogstats-statistics-accounting.pm (0.35)
+	  [FIX]: fix double parsing of smtpd/client lines ('missing return')
+	          causing improper customer domain relation on authenticated users
+	  [FIX]: fix double printing of result by domain
+
+2005-06-17/PB
+	- pflogstats-statistics-accounting.pm (0.34)
+	  [LAYOUT]: layout fix for longer fixedformatnumber
+	  [FEATURE]: add support for fixedformatnumber for show_users
+	  [FEATURE]: computer format now reports also total_rcvd, total_sent
+	- pflogstats.pl (1.1.3)
+	  [CLEANUP]: remove obsolete pflogsumm code
+
+2005-06-14/PB
+	- pflogstats-extensions-networking.pm (0.12)
+	  [FIX]: fix typo in comment, remove IPv4 mapped in IPv6 address prefix
+	- pflogstats-statistics-accounting.pm (0.33)
+	  [FIX]: fix accounting bugs for forwarded messages by minor redesign
+	  [FEATURE]: add support for fixedformatnumber
+	- pflogstats-common-support.pm (0.22)
+	  [EXTENSION]: support some more domains on extract_2ndlevel
+	  [FIX]: use new hook 'early_checkoptions' to parse debug option before other modules will use it
+	- pflogstats.pl (1.1.2)
+	  [FEATURE]: make "pflogstats-common-profiling.pm" and "pflogstats-extensions-networking.pm"
+	              optional by using eval
+	  [FIX]: new hook 'early_checkoptions' to parse debug option first
+
+2005-05-18/PB
+	- pflogstats-statistics-accounting.pm (0.32)
+	  [FIX]:fix problem that rejects are no longer accounted since qid=NOQUEUE in log line
+
+2005-05-02/PB
+	- pflogstats-statistics-accounting.pm (0.31)
+	  [FIX]: fix problem if amavis reports 2 destination addresses (take only the first one)
+	  [EXTENSION]: add support for authenticated users using postfix proxy
+	  [EXTENSION]: add debug option to print accounting data which doesn't match customers
+	- pflogstats-statistics-accpopimap.pm (0.12)
+	  [CLEANUP]: improve check for exisiting data
+	- pflogstats-common-support.pm (0.20)
+	  [FIX]: take care of (co|ac).tld domains on extract_2ndlevel domain
+	- pflogstats.pl (1.1.1)
+	  [CLEANUP]: enable strict mode, minor fixes for that
+	  [FIX]: reenable capability to specify input filename at end of option line
+
+2005-04-26/PB
+	- pflogstats.pl (1.1.1)
+	  [CLEANUP]: reorganize hook names
+	  [CLEANUP]: drop most of pflogsumm code
+	- pflogstats-statistics-accounting.pm (0.30)
+	- pflogstats-statistics-accpopimap.pm (0.11)
+	- pflogstats-statistics-reject.pm (0.17)
+	- pflogstats-statistics-uce.pm (0.11)
+	- pflogstats-statistics-antivirus.pm (0.19)
+	- pflogstats-statistics-spamassassin.pm (0.05)
+	- pflogstats-extensions-networking.pm (0.11)
+	  [CLEANUP]: reorganize hook names
+	- pflogstats-extensions-addressmapping.pm (0.06)
+	  [EXTENSION]: add caching
+	- pflogstats-common-support.pm (0.19)
+	  [EXTENSION]: add support for number format option "fixednumberformat"
+	               add new option "printstatistics" for statistical data
+	- apachelogiostats.pl (0.07)
+	  [EXTENSION]: add support for "printstatistics", fix variable type in printf
+
+2005-02-28/PB
+	- pflogstats.pl
+	  [CLEANUP]: remove unused use of Date::Calc
+	- pflogstats-extensions-networking.pm (0.10)
+	  [EXTENSION]: remove optional address prefix token
+	- statistics-accounting (0.29)
+	  [FEATURE]: add support for e-mails blocked by amavis
+	- statistics-antivirus (0.18)
+	  [EXTENSION]: extend log line parser of amavis
+	  [FIX]: fix Eicar detection
+	- common-support (0.18)
+	  [EXTENSION]: add caching for domain extraction
+	  [EXTENSION]: add function 'modify_address' with cache
+
+2004-08-06/PB
+	- statistics-antivirus (0.17)
+	  [FEATURE]: catch also "warning: (virus message)" on Kaspersky AV
+
+2004-07-02/PB:
+	- statistics-accounting (0.28)
+	- statistics-antivirus (0.16)
+	- statistics-reject (0.16)
+	- statistics-uce (0.10)
+	  [FIX]: regexp adjusted for strange e-mail addresses
+
+2004-05-20/PB:
+	- statistics-accounting (0.27)
+	  [FIX]: regexp adjusted for strange e-mail addresses
+
+2004-02-20/PB:
+	- statistics-accounting (0.25)
+	  [FIX]: fix bug with messages longer in queue than analysis time frame
+	  [FEATURE]: add counter for "smtp_to_deferred"
+
+2004-02-18/PB:
+	- statistics-accounting (0.24)
+	  [FEATURE]: add support for accounting discarded messages (at least the header)
+
+2004-01-29/PB:
+	- common-support
+	  [FEATURE]: add a missing print-max-width match
+
+2004-01-27/PB:
+	- statistics-antivirus (0.15)
+	  [FEATURE]: extend reject/discard for Kaspersky AV to I-Worm.*
+	  [FEATURE]: add support for newer amavis log lines
+	  [FEATURE]: add support for av_type=amavis (also default now)
+	  [INCOMPAT]: option av_type has now "amavis" as default
+
+2003-12-26/PB:
+	- common-support
+	  [FEATURE]: add option print-max-width (default: 75)
+	  [DESIGN]: move option show_user|domain_list from other to here
+	- statistics-accounting
+	- statistics-accpopimap
+	- statistics-reject
+	- extensions-networking
+	  [FEATURE]: use option print-max-width
+
+2003-12-23/PB:
+	- statistics-accounting
+	  [FEATURE]: add support for "simpleauth" log lines
+
+2003-12-23/PB:
+	- common-support
+	  [FEATURE]: add subkey list support for treeview
+	- common-intermediate-xml (new)
+	  [FEATURE]: implement an intermediate XML storage mechanism
+	- pflogstats.pl
+	  [FEATURE]: use intermediate XML storage mechanism by adding some more hooks
+	  [FEATURE]: skip waiting for STDIN in case of no data is piped
+	  [FEATURE]: add support for new option "show_user_list"
+	  [FEATURE]: add support for new option "show_domain_list"
+	- statistics-reject
+	  [FEATURE]: use intermediate XML storage mechanism by adding some more hooks
+	  [FEATURE]: take care of new option ""show_user_list" in treeview
+	  [INCOMPAT]: option "treeview" is replaced by "show_domain_list"
+	- statistics-uce
+	  [INCOMPAT]: option "treeview" is replaced by "show_domain_list"
+	- statistics-antivirus
+	  [INCOMPAT]: option "treeview" is replaced by "show_domain_list"
+	- Tag version as 1.0.1
+
+2003-10-21/PB:
+	- apachelogiostats.pl
+	- extensions-networking
+	  [SPEED]: implement caching of IP address check
+
+2003-10-20/PB:
+	- apachelogiostats.pl
+	  [FEATURE]: implement TCP overhead accounting
+
+2003-10-13/PB:
+	- common-support
+	  [FIX]: don't die in function treeview if hash is empty
+
+2003-09-26/PB:
+	- pflogstats.pl
+	   print some copyright information
+	- Tag version as 1.0.0
+
+2003-09-15/PB:
+	- apachelogiostats.pl
+	   new, create statistics about apachewebserver logs
+	- common-support
+	   set debug value on earlybegin to 0 (avoid some problem on "misordered" checkoption calls)
+	- extensions-networking
+	   skip_ipv6 didn't work if no other IP network was given
+	- sqwmstats.pl
+	   add network exclusion support
+	   implement fallback accounting (request size)
+
+2003-08-31/PB:
+	- common-support
+	   add option "--skip_subtree_pattern"
+	- statistics-reject
+	   adjust "--reject_show_clients", disable per user if selected
+
+2003-08-29/PB:
+	- statistics-reject
+	   change data for "--reject_show_clients"
+
+2003-08-27/PB:
+	- pflogstats.pl
+	   Show version sum of modules
+	- statistics-reject
+	   Enhance code for body_check rejects
+	   add option "--reject_skip_sender_statistic"
+	   add option "--reject_show_clients"
+
+2003-08-22/PB:
+	- common-support
+	   add new function print_treeview2 with parameter maxdepth
+	   print sum numbers on tree entries
+	- statistics-antivirus: 
+	   add support for Sobig.f body_check log line
+	   be more relaxed on extractin info from avcheck lines
+	   add option "--av_skip_sender_statistic"
+
+2003-08-14/PB:
+	- pflogstats.pl
+	   Add support for modify rcpt address in old pflogsumm code
+
+2003-08-14/PB: 20030814
+	- pflogstats.pl
+	   Fix trouble on reject lines containing no "from=" and "to=" information
+	- statistics-reject
+	   Fix trouble on reject lines containing no "from=" and "to=" information
+	   Proper support of "MAIL / Message size exceeds"
+	   Enhance debug code
+
+2003-07-21/PB:
+	- statistics-spamassassin
+	   Perl 5.0 compatibility
+
+2003-07-08/PB:
+	- statistics-accounting
+	   max width of customer list 79->75 chars
+	   fix bug on users accouting
+
+2003-07-01/PB:
+	- common-support
+	   add verbose mode, suppress some information in non-verbose mode
+	- sqwmstats.pl
+	   add support for timerange(get), bugfix user remapping
+	   add support for addressmapping table
+
+2003-05-22/PB:
+	- Perl 5.0 compatibility
+
+2003-05-06/PB:
+	- fix obsolete hash reference code
+	- statistics-accounting
+	   fix problem with <>@host loglines like "from=<<>@uke.uni-hamburg.de>"
+
+2003-05-05/PB:
+	- statistics-accounting
+	   minor fix
+	- statistics-accpopimap
+	   convert IPv4 compatible IPv6 addresses into IPv4 ones for
+            proper match of --skip_ipv6
+
+2003-04-30/PB:
+	- extensions-addressmapping
+	   don't modify special bounce addresses
+	- statistics-accounting
+	   minor debug code improvements
+	   extend message-id based mapping with "to" address
+
+2003-04-28/PB:
+	- statistics-accounting
+           fix misaccouting on local configured forwarding via a local relay
+           print accounting overhead options
+
+2003-04-25/PB:
+	- add module information to global hash and display it on start
+
+2003-04-23/PB:
+	- statistics-accounting
+	   TCP overhead accouting can be disabled by option
+	- statistics-accpopimap
+	   Add TCP overhead accounting (can be disabled)
+	- common-profiling
+	   Make output of profiling information optional
+
+2003-04-22/PB:
+	- statistics-accounting
+	   account estimated envelope size and TCP/IP overhead
+	- extensions-addressmapping
+	   add support of regexp
+
+2003-04-04/PB:
+	- statistics-accounting
+	   fix clone id debugging
+	   fix not working localhost detection (too much was accounted)
+	   fix bug in clone accounting (clones sent to remote were not accounted)
+
+2003-04-03/PB:
+	- pflogstats.pl:
+	   add support of timerange MMM DD
+	- pflogstats-common-support.pm:
+	   check debug value string for numeric value
+
+2003-02-19/PB:
+	- statistics-accounting
+	   minor copy&paste bugfix in warning message
+
+2003-02-19/PB:
+	- statistics-antivirus: 
+	   replace warning on empty information with a token
+
+2003-02-12/PB:
+	- extensions-networking: fix display of network exclude list
+	- statistics-accounting
+	   improve statistics parser, now "qmgr" is also recognized
+	   extend logline parser matches ([n]qmgr/to) 
+	   fix scoping bug of virtual support (check_domain)
+
+2003-02-11/PB: 
+	- statistics-accounting
+	   improve bugfix in qid match
+	- move network matching code to a new module (so it can be used optionally)
+	- add option "--skip_ipv6" on extensions-networking
+
+2003-02-10/PB: 20030210
+	- statistics-accounting
+	   fix a bug in qid match (to catch older postfix versions loglines, too)
+
+2003-02-08/PB: 20030208
+	- rewrite logfileparser of statistics-reject (now completly independed from pflogsumm code)
+	- remove all additional code in the old pflogsumm parser except fixes and some required hooks
+
+2003-02-07/PB: 20030207
+	- move profiling statistics into a separate module (can be disabled)
+	- rewrite logfileparser of statistics-accounting, accounting-uce (now completly independed from pflogsumm code)
+
+2003-02-06/PB: 20030206
+	- add statistics output on end
+	- complete redesign of clone handling (speed-up, but more memory usage in not memory optimization case)
+	- call qid hook only with valid qids
+	- review garbage collection on accouting
+	  current stat by Jan/2003 log from my server (176331 lines):
+	   (memspeedfactor: the lower the better)
+	   with    memory optimization: mem=~13 MB  time=~7 min  memspeedfactor=1920 MByte*sec (on memopt:100 smtp lines)
+	   with    memory optimization: mem=~13 MB  time=~7 min  memspeedfactor=2230 MByte*sec (on memopt:1000 smtp lines)
+	   without memory optimization: mem=~39 MB  time=~7 min  memspeedfactor=12473 MByte*sec
+	- accounting: proper handling of bounced messages on memopt
+	- accounting: proper handling of reused qids (can sure happen, sometimes after 2 hours!)
+
+2003-02-05/PB: 20030205a
+	- some code optimization (hook calling)
+	- much memory optimization for accounting (slows down a little bit...)
+	  new option "acc_nomemopt" to demonstrate the difference
+	  used by Jan/2003 log from my server (176331 lines):
+	   with    memory optimization: mem=~11 MB  time=~12 min
+	   without memory optimization: mem=~33 MB  time=~11 min
+	- fix buggy qid cloning (too many clones were generated on 'deferral')
+
+2003-02-05/PB: 20030205
+	- change format options, now more than one format can be specified
+
+2003-02-04/PB: 2.0.0.AERAsec.beta13
+	- introduce new option "sort" for sorting table contents by alpha|minmax|maxmin (still not everywhere implemented)
+	- start reviewing main option (handling) and online help
+	- logline parser do no longer die if a line contains an invalid date (only warn now)
+	- tag some hardcoded debug lines
+	- add some more paths to find modules
+	- rename option for date range ('d' -> 'r|range')
+	- introduce new option "numberformat" for switching output number format (de_DE|en_US)
+	- fix "from" on reject
+
+2003-02-04/PB received by BZ:
+	- added some if() to debugging output to avoid (warnings)
+	- added totals to per-hour traffic table (pflogsumm-stats)
+	- removed 'next if' that we always see the full per hour smtp connection summary (pflogsumm-stats)
+	- added newlines after those tables to separate them in output (pflogsumm-stats)
+	- added another verpmung rule
+	- added ending brace in regex for status=deferred message line
+
+2003-01-19/PB:
+	- enhance antivirus for switchable message
+	- move acc_virtual code to module
+	- accounting: change timestr to unixtime (smaller storage)
+	- move most of the code to modules
+	- change some option names
+	
+2003-01-18/PB:
+	- create new modules (split-off)
+	- enhance antivirus to detect rejected I-Worm.Sobig
+
+2.0.0.AERAsec.beta12:
+	- most of my contribution code was now moved away into modules
+
+2.0.0.AERAsec.beta11:
+	- move "verp_mung" code to a new module
+	- add a support module
+
+2.0.0.AERAsec.beta10:
+        - improve detection of "from=<#@[]>"
+	- replace "die.." with a special domain token for invalid e-mail addresses on domain extraction
+	- add support of new module pflogstats-statistics-accounting.pm (still not finished)
+	- add new format "indented"
+	- minor code moving (accounting statistics hash init)
+
+2.0.0.AERAsec.beta9:
+	- accept special sender address "from=<#@[]>"
+	- start implementing module loader and hook caller
+	- add support of module pflogstats-addressmapping.pm (addressmapping extension)
+	- fix accounting bug (too much was accounted) on cloned qids
+
+*** now renamed to pflogstats to avoid trouble ***
+
+==========================
+Extensions of pflogsumm.pl
+--------------------------
+beta8: add support for "orig_to" log information, will override local address
+       add support for sqwebmail webserver loglines, if IN=/OUT= is available (mod_logio)
+       downgrade regexp sets for use with older Perl versions
+       add an additional reject match "undeliverable sender address"
+       extend RBL information
+
+beta7: add option for extract accounting of pop3d/imapd
+       extend reject type statistics (normal table)
+
+beta6: improve code for network accounting match, autoadd mapped IPv6 address in IPv4 case in exclude list
+       adjust log parser tor autodetect new log style for rejects since snapshot 1.1.11-20021028
+
+beta5: add format switch "computer" for type "acc"
+       fix code for proper handling of IPv6 addresses (first try)
+
+beta4: add verp_mung support to stat -t av, add reject reason "Message size exceeds"
+       add verp_mung to reject addresses, update verp_mung
+       add rejFrom to reject information
+       add a verp_mung test 
+       improve verp_mung code, also add a special debug switch
+
+beta3: add ezmlm to verp_mung, do also verp_mung for "to"-addresses
+
+beta2: add reject and UCE stats, add display treeviewstat
+
+beta1: add antivirus statistics, cleanup "special*" names to better ones
+
+alpha8: add new option "--special2" for creating stats about UCE blocklists
+
+alpha7b: fix parsing problems of virtual file, always map virtual, not only on relay=local
+
+alpha7a: add support for customer-domain list, add support for more than one network for exclude of accounting
+
+alpha7: account only messages with status "sent", skip "deferred"
+
+alpha6: fix several bugs, add new report layout, count cc/bcc mails correctly by cloning qid
+
+alpha5: fix not expected "relay=none"
+
+alpha4: add virtual mapping support
+
+alpha3: fix sasl problem in client log line
+
+alpha2: some fixes reported from alpha1 tester
+
+alpha1: first implementation of special1 accouting style
+

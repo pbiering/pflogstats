@@ -1,0 +1,35 @@
+# $Id: CREDITS,v 1.7 2004/01/27 13:28:44 rootadm Exp $
+
+First credits to James S. Seymour (jseymour@LinxNet.com)
+ the author of the original program 'pflogsumm', on which 'pflogstats' is based
+
+
+Also credits to
+	Joerg Henner <henner at etes dot de>:
+         - testing alpha* version, detecting some problems, requesting some features
+         - providing some real-life logs
+
+        Ralf Hildebrandt <Ralf dot Hildebrandt at charite dot de>:
+         - testing beta version, providing some real-life logs
+	 - bug reporting
+
+	Norman C. Rice <nrice at emu dot sourcee dot com>
+         - providing patch for usage with older Perl versions (beta8)
+	 - providing patch for additional reject and RBL information (beta8)
+
+	Danny Richter <drichter at srs-sys dot de>
+         - found a bug in accounting of cloned qids ('from' was accounted too much)
+	 - testing and reporting bugs
+
+	Bjoern A. Zeeb <bz at cksoft dot de>
+	 - some minor extensions for built-in pflogsumm statistics
+	 - a verp_mung extension
+
+	Mathieu Arnold <mat at mat dot cc>
+	 - Perl 5.0 compatiblity patches
+
+	Don Croyle <croyle at gelemna dot org>
+	 - Perl 5.0 compatiblity patches
+
+	Alexander Bech <A dot Bech at webmail dot kdvz dot de>
+	 - Providing log files of amavis

@@ -1,0 +1,26 @@
+$Id: INSTALL,v 1.1 2003/02/04 18:19:55 rootadm Exp $
+
+Installation of "pflogstats"
+
+Note:
+-----
+You can install pflogstats elsewhere, but the major trap are the finding of the modules.
+Currently built-in search paths for the modules:
+ /path/to/your/perl/installation/modules
+ .
+ /usr/local/lib/pflogstats
+ /usr/lib/pflogstats
+
+
+Installation for test purposes:
+-------------------------------
+- Extract tarball and start program from this directory
+   e.g.   ./pflogstats.pl
+
+
+Installation for productive purposes:
+-------------------------------------
+e.g.
+# mkdir /usr/local/lib/pflogstats
+# cp *.pm /usr/local/lib/pflogstats
+# cp *.pl /usr/local/bin

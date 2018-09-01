@@ -1,0 +1,65 @@
+$Id: TODO,v 1.13 2005/05/18 10:47:23 peter Exp $
+
+ToDo of pflogstats
+
+Short term:
+-----------
+- Move support of customer domains to a new module (dual used by accounting and accpopimap)
+   Usage with regexp
+- TCP/IP-Overhead for IPv6 (done?)
+- Add support of "show_user_list" for "uce" and "av"
+
+
+Middle term:
+------------
+- Clean-up code
+- Extend "range" option to support dedicated dates
+- Check all used options
+- Review all txttable-Output for redundant code and similar design
+- Accounting: show deferred messages on end of log (still waiting for accouting)
+
+
+Long term:
+----------
+- Accounting: store information about deferred messages on end of log (still waiting for accouting)
+  for use on next run (e.g. one month later), also add an import capability of this data
+# use "use strict" in main program (this means all pflogsumm code has to be reviewed)
+
+
+Unsorted:
+---------
+* Check whether all countable data is accounted
+* Proper implementation of debug mode
+
+....many more
+
+
+Done:
+-----
+- Remove all hash usage like "%hash->{firstindex}"
+  -> done
+
+- Decission whether to drop all old pflogsumm statistics code or move it into a module
+  -> done (200504)
+
+- Implement caching in "pflogstats-extensions-networking.pm" 
+  -> done
+
+- Make printing statistics optional
+  -> done
+
+- Make code Perl 5.0 compatible
+  -> done
+
+- Check scaling on big log files
+  -> memory optimization implemented for accounting (20030205)
+  -> reviewed and minor accounting differences fixed (cloning code problem)
+
+- Accounting: filter out "bounced" and "reject" messages earlier (on aquiring statistics)
+  -> done (20030207) on rewriting loglineparser
+
+- Make information retrieving independed from old pflogsumm code
+  -> partially done (20030207): accounting+uce are now well-done
+
+- Make reject information retrieving independed from old pflogsumm code
+  -> done (20030208): statistcs-reject is now well-done
